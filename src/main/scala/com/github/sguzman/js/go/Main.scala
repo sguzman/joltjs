@@ -11,6 +11,7 @@ object Main {
 
   def main(args: Array[String]): Unit = {
     val items = decode[List[Model]](JS.JSON.stringify(JS.Globals.shows)).right.get
-    com.thoughtworks.binding.dom.render(document.body, render(items))
+    val ordered = items.map(a => Model(a.title, a.img, a.desc, a.eps.reverse))
+    com.thoughtworks.binding.dom.render(document.body, render(ordered))
   }
 }
